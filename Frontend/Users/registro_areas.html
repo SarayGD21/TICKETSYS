@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Áreas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-reset {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-reset:hover {
+            background: #e0e0e0;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Registro de Áreas</h1>
+            <p>Completa el formulario para registrar una nueva área</p>
+        </div>
+        
+        <div class="success-message" id="successMessage">
+            ¡Área registrada exitosamente!
+        </div>
+        
+        <form id="areaForm">
+            <div class="form-group">
+                <label for="sCodigo">Código del Área*</label>
+                <input type="text" id="sCodigo" name="sCodigo" required placeholder="Ej: AR001">
+                <div class="error-message" id="sCodigoError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="sNombre">Nombre del Área*</label>
+                <input type="text" id="sNombre" name="sNombre" required placeholder="Ej: Recursos Humanos">
+                <div class="error-message" id="sNombreError"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="sEncargado">Encargado*</label>
+                    <input type="text" id="sEncargado" name="sEncargado" required placeholder="Nombre completo">
+                    <div class="error-message" id="sEncargadoError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sEmail">Email*</label>
+                    <input type="email" id="sEmail" name="sEmail" required placeholder="correo@empresa.com">
+                    <div class="error-message" id="sEmailError"></div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="iTelefono">Teléfono</label>
+                    <input type="number" id="iTelefono" name="iTelefono" placeholder="Ej: 1234567890">
+                    <div class="error-message" id="iTelefonoError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sEstado">Estado*</label>
+                    <select id="sEstado" name="sEstado" required>
+                        <option value="">-- Selecciona un estado --</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                        <option value="Suspendido">Suspendido</option>
+                    </select>
+                    <div class="error-message" id="sEstadoError"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="sDescripcion">Descripción</label>
+                <textarea id="sDescripcion" name="sDescripcion" placeholder="Describe las funciones del área..."></textarea>
+            </div>
+            
+            <div class="btn-container">
+                <button type="submit" class="btn-submit">Registrar Área</button>
+                <button type="reset" class="btn-reset">Limpiar</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        const form = document.getElementById('areaForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            document.querySelectorAll('.error-message').forEach(msg => msg.style.display = 'none');
+            
+            const sCodigo = document.getElementById('sCodigo').value.trim();
+            const sNombre = document.getElementById('sNombre').value.trim();
+            const sEncargado = document.getElementById('sEncargado').value.trim();
+            const sEmail = document.getElementById('sEmail').value.trim();
+            const sEstado = document.getElementById('sEstado').value;
+            
+            let isValid = true;
+            
+            if (!sCodigo) {
+                document.getElementById('sCodigoError').textContent = 'El código es requerido';
+                document.getElementById('sCodigoError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!sNombre) {
+                document.getElementById('sNombreError').textContent = 'El nombre es requerido';
+                document.getElementById('sNombreError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!sEncargado) {
+                document.getElementById('sEncargadoError').textContent = 'El encargado es requerido';
+                document.getElementById('sEncargadoError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!sEmail) {
+                document.getElementById('sEmailError').textContent = 'El email es requerido';
+                document.getElementById('sEmailError').style.display = 'block';
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sEmail)) {
+                document.getElementById('sEmailError').textContent = 'Email inválido';
+                document.getElementById('sEmailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!sEstado) {
+                document.getElementById('sEstadoError').textContent = 'Selecciona un estado';
+                document.getElementById('sEstadoError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                const formData = new FormData(form);
+                console.log('Datos del formulario:', Object.fromEntries(formData));
+                
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    form.reset();
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
