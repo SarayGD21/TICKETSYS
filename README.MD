@@ -15,10 +15,11 @@ Desarrollar un CRM para la empresa x con la metodologia SCRUM y las herramientas
 - CVS:
 
 ## ARQUITECTURA
-La arquitectura del proyecto
+La arquitectura del proyecto :
 
 ## METODOLOGIA
 - [] SPRINT 1
 - [] SPRINT 2
 - [] SPRINT 3
 - [] SPRINT 4
+- [] SPRINT
